@@ -1,8 +1,8 @@
 # pokemon_vba
 
-Demo Apps [Link to Download App!](https://github.com/dwikresno/supermario/blob/main/app/app.apk?raw=true)
+Demo Apps [Link to Download App!](https://github.com/dwikresno/pokemon_vba/blob/main/app/app.apk?raw=true)
 
-![Alt Text](https://github.com/dwikresno/supermario/blob/main/app/example.gif)
+![Alt Text](https://github.com/dwikresno/pokemon_vba/blob/main/app/example.gif)
 
 ## Installation
 
