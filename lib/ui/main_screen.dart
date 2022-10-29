@@ -28,10 +28,12 @@ class _MainScreenState extends State<MainScreen> {
   bool isMusicPlayed = true;
   bool isOutside = true;
   String directionBoy = "down";
-  int countWalk = 0;
   List<List<double>> forbidenArea = [
     [394, 210],
   ];
+  bool isWalk = false;
+  bool isWait = true;
+  Timer? timerWalk;
 
   @override
   void initState() {
@@ -298,7 +300,7 @@ class _MainScreenState extends State<MainScreen> {
       width: 40,
       height: 40,
       child: Image.asset(
-        "lib/assets/pokemon/image/characters/${directionBoy}_${countWalk}.png",
+        "lib/assets/pokemon/image/characters/${directionBoy}_${isWait ? 0 : isWalk ? 1 : directionBoy == 'left' || directionBoy == 'right' ? 0 : 2}.png",
         fit: BoxFit.contain,
       ),
     );
@@ -309,7 +311,13 @@ class _MainScreenState extends State<MainScreen> {
       mode: JoystickMode.horizontalAndVertical,
       // stickOffsetCalculator: const RectangleStickOffsetCalculator(),
       listener: (details) {
+        print("${details.x},${details.y}");
         moveDirection(details.x, details.y);
+      },
+      onStickDragEnd: () {
+        setState(() {
+          isWait = true;
+        });
       },
     );
   }
@@ -410,14 +418,9 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   walkAnimation() {
-    Timer.periodic(Duration(milliseconds: 100), (timer) {
-      setState(() {
-        countWalk += 1;
-      });
-      if (countWalk == 3) {
-        countWalk = 0;
-        timer.cancel();
-      }
+    setState(() {
+      isWait = false;
+      isWalk = !isWalk;
     });
   }
 }
